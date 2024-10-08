@@ -35,7 +35,7 @@ Setup and Installation
 Clone this repository to your local machine:
 bash
 Copy code
-git clone https://github.com/your-username/xyz-bank.git
+git clone https://github.com/Shushanth101/ATM.git
 Open the project in your preferred Java IDE.
 Compile the Java files:
 bash
