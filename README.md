@@ -58,24 +58,7 @@ Change PIN: Change the ATM PIN for the customer’s debit card.
 Exit: Exit the system.
 Each option corresponds to a banking operation, and the system will guide the user through the process step by step. All data is securely stored and managed via files.
 
-Project Structure
-bash
-Copy code
-XYZ Bank/
-│
-├── src/
-│   ├── Main.java              # Entry point of the application
-│   ├── Customer.java          # Customer class with KYC details and operations
-│   ├── Account.java           # Account class for balance and transaction management
-│   ├── FileOperations.java    # Handles file read/write operations
-│   └── Transaction.java       # Transaction class for withdrawal and deposits
-│
-├── data/                      # Directory to store customer data files
-│   ├── customer_001.txt
-│   ├── customer_002.txt
-│   └── ... 
-│
-└── README.md                  # Project documentation
+               # Project documentation
 Future Enhancements
 Implement a more secure authentication system with encryption for PINs.
 Add a graphical user interface (GUI) for better user interaction.
