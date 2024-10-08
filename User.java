@@ -34,7 +34,7 @@ public class User {
         }
     }
     public static void withdraw() throws IOException {
-        File f = new File("./ACCOUNTS/" + acc + "/balance.csv");
+        File f = new File("./ACCOUNTS/" + acc + "/Balance.csv");
         double bal = getBalance(f);
         System.out.println("Enter the Amount: ");
         Scanner sc = new Scanner(System.in);
@@ -48,7 +48,7 @@ public class User {
         }
     }
     public static void credit() throws IOException {
-        File f = new File("./ACCOUNTS/" + acc + "/balance.csv");
+        File f = new File("./ACCOUNTS/" + acc + "/Balance.csv");
         double bal = getBalance(f);
         System.out.println("Enter the amount to credit: ");
         Scanner sc = new Scanner(System.in);
@@ -75,7 +75,7 @@ public class User {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter recipient account number: ");
         String recipientAcc = sc.nextLine();
-        File recipientFile = new File("./ACCOUNTS/" + recipientAcc + "/balance.csv");
+        File recipientFile = new File("./ACCOUNTS/" + recipientAcc + "/Balance.csv");
         if (!recipientFile.exists()) {
             System.out.println("Recipient account not found.");
             sc.close();
@@ -83,7 +83,7 @@ public class User {
         }
         System.out.println("Enter amount to transfer: ");
         double transferAmount = sc.nextDouble();
-        File currentUserFile = new File("./ACCOUNTS/" + acc + "/balance.csv");
+        File currentUserFile = new File("./ACCOUNTS/" + acc + "/Balance.csv");
         double senderBalance = getBalance(currentUserFile);
         if (senderBalance >= transferAmount) {
             updateBalance(currentUserFile, senderBalance - transferAmount);
@@ -98,7 +98,7 @@ public class User {
 
 
     public static void printTransaction() throws IOException {
-        File file = new File("./ACCOUNTS/" + acc + "/transactions.csv");
+        File file = new File("./ACCOUNTS/" + acc + "/TransactionList.csv");
         if (!file.exists()) {
             System.out.println("No transaction history available.");
             return;
