@@ -1,4 +1,4 @@
-XYZ Bank - Console Based Banking System
+ATM - Console Based ATM Simulation
 Table of Contents
 Project Overview
 Features
@@ -11,7 +11,7 @@ Future Enhancements
 Contributing
 License
 Project Overview
-XYZ Bank is a console-based banking system built using Java. It allows customers to perform various banking operations such as account registration, balance checking, withdrawals, deposits, money transfers, and PIN changes. This project demonstrates fundamental concepts of Object-Oriented Programming (OOP) and file handling in Java.
+ATM is a console-based ATM Simulation built using Java. It allows customers to perform various banking operations such as account registration, balance checking, withdrawals, deposits, money transfers, and PIN changes. This project demonstrates fundamental concepts of Object-Oriented Programming (OOP) and file handling in Java.
 
 The system stores customer data in files, which include bank balance, transaction history (withdrawals and credits), and account information. It also integrates basic sign-in functionality and follows a user-friendly menu system.
 
@@ -58,7 +58,7 @@ Change PIN: Change the ATM PIN for the customer’s debit card.
 Exit: Exit the system.
 Each option corresponds to a banking operation, and the system will guide the user through the process step by step. All data is securely stored and managed via files.
 
-               # Project documentation
+          
 Future Enhancements
 Implement a more secure authentication system with encryption for PINs.
 Add a graphical user interface (GUI) for better user interaction.
