@@ -1,123 +1,203 @@
+import java.util.*;
 import java.io.*;
-import java.util.Scanner;
+public class Main5 {
+    public static void displayWelcomeScreen() {
+        clearConsol();
+        System.out.print(
+                      "\n\t\t" + " ****** WELCOME TO ATM! ****** " + "\n" +
+                        "\t\t" + " _____________________________ " + "\n" +
+                        "\t\t" + "|                             |" + "\n" +
+                        "\t\t" + "|____ 1) Login _______________|" + "\n" +
+                        "\t\t" + "|                             |" + "\n" +
+                        "\t\t" + "|____ 2) Register_____________|" + "\n" +
+                        "\t\t" + "|                             |" + "\n" +
+                        "\t\t" + "|_____________________________|" + "\n");
+        System.out.print("\n\t\tYour Choice: ");
+        Scanner scan = new Scanner(System.in);
+        int choice = scan.nextInt();
+        switch (choice) {
+            case 1:
+                try {
+                    if(User.signIn()){
+                        displayMainMenu();
+                       }
+                       else{
+                        System.out.println("or Password");
+                       }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 2:
+            System.out.println("Enter your age: ");
+            int age = scan.nextInt();
+            scan.nextLine();  
 
-public class Main {
-    public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);  
-        System.out.println("************* Welcome To XYZ Bank **************");
-        System.out.print("1. Sign in\nNew User??\n2. Register\n");
-        
-        if (sc.hasNextInt()) {
-            int choice = sc.nextInt();
-            sc.nextLine();  
+            System.out.println("Enter your Name: ");
+            String Name = scan.nextLine();
 
-            switch (choice) {
-                case 1:
-                boolean login=User.signIn();
-                    if (login) {
-                        //boolean exit = false;
-                        System.out.println("1. Withdrawal\n2. Credit\n3. Balance\n4. Transfer\n5. Change Pin\n6. Print Mini Statement\n7. Exit");
-                        int number = sc.nextInt();
+            System.out.println("Enter your Aadhaar Number: ");
+            String aadhaar = scan.nextLine();
 
-                        while (number!=7) {
-                            System.out.println("1. Withdrawal\n2. Credit\n3. Balance\n4. Transfer\n5. Change Pin\n6. Print Mini Statement\n7. Exit");
-                            System.out.print("Enter your choice: ");
-                            
-                            /*if (sc.hasNextInt()) {  
-                                 number = sc.nextInt();
+            System.out.println("Enter your Email: ");
+            String email = scan.nextLine();
 
-                            } else {
-                             number=2;
-                            }*/
+            System.out.println("Enter your Phone Number: ");
+            String phno = scan.nextLine();
 
-                            switch (number) {
-                                case 1:
-                                    User.withdraw(); 
-                                    break;
-                                case 2:
-                                    User.credit(); 
-                                    break;
-                                case 3:
-                                    File f = new File("./ACCOUNTS/" + User.acc + "/balance.csv");
-                                    System.out.println("Your current balance is: " + User.getBalance(f));
-                                    break;
-                                case 4:
-                                    User.sendMoney();  
-                                    break;
-                                case 5:
-                                    System.out.println("Enter your previous password: ");
-                                    String oldpass = sc.nextLine();
-                                    System.out.println("Enter new password: ");
-                                    String newpass = sc.nextLine();
-                                    boolean isPinChanged = User.changePin(User.acc, oldpass, newpass);
-                                    if (isPinChanged) {
-                                        System.out.println("PIN changed successfully.");
-                                    } else {
-                                        System.out.println("Failed to change PIN.");
-                                    }
-                                    break;
-                                case 6:
-                                    User.printTransaction();  
-                                    break;
-                                /*case 7:
-                                    exit = true;  
-                                    System.out.println("Thank you for banking with XYZ Bank.");
-                                    break;*/
-                                default:
-                                    System.out.println("Invalid choice! Please try again.");
-                            }
-                        }
-                    } else {
-                        System.out.println("You entered the wrong account number or password.");
-                    }
-                    break;
-
-                case 2:
-                    System.out.println("Enter your age: ");
-                    int age = sc.nextInt();
-                    sc.nextLine();  
-
-                    System.out.println("Enter your Name: ");
-                    String Name = sc.nextLine();
-
-                    System.out.println("Enter your Aadhaar Number: ");
-                    String aadhaar = sc.nextLine();
-
-                    System.out.println("Enter your Email: ");
-                    String email = sc.nextLine();
-
-                    System.out.println("Enter your Phone Number: ");
-                    String phno = sc.nextLine();
-
-                    String pan = "";
-                    if (age >= 18) {
-                        System.out.println("Enter Permanent Account Number (PAN): ");
-                        pan = sc.nextLine();
-                    }
-
-                    System.out.println("Set a Password for your Account: ");
-                    String pass = sc.nextLine();
-
-                    System.out.println("Confirm your Password: ");
-                    String confirmPass = sc.nextLine();
-
-                    if (pass.equals(confirmPass)) {
-                        Registration.createAccount(Name, aadhaar, email, phno, pan);
-                        Registration.setPin(confirmPass);
-                        System.out.println("Account created successfully!");
-                    } else {
-                        System.out.println("Passwords do not match. Please try again.");
-                    }
-                    break;
-
-                default:
-                    System.out.println("Invalid choice! Please try again.");
+            String pan = "";
+            if (age >= 18) {
+                System.out.println("Enter Permanent Account Number (PAN): ");
+                pan = scan.nextLine();
             }
-        } else {
-            System.out.println("Invalid input! Please enter a number.");
-        }
-        
-        sc.close();  
+
+            System.out.println("Set a Password for your Account: ");
+            String pass = scan.nextLine();
+
+            System.out.println("Confirm your Password: ");
+            String confirmPass = scan.nextLine();
+
+            if (pass.equals(confirmPass)) {
+                try {
+                    Registration.createAccount(Name, aadhaar, email, phno, pan);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    Registration.setPin(confirmPass);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("Account created successfully!");
+            } else {
+                System.out.println("Passwords do not match. Please try again.");
+            }
+            break;
+            default:
+                System.out.print("\n\t\tInvalid Choice!\n");
+                try {
+                    System.out.print("\n\nPress any key to continue...");
+                    System.in.read();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                displayWelcomeScreen();
+            }
+        scan.close();
+            
     }
+    public static void displayMainMenu() {
+        clearConsol();
+        System.out.print(
+                      "\n\t\t" + "*********** MAIN MENU ***********" + "\n" +
+                        "\t\t" + " _______________________________ " + "\n" +
+                        "\t\t" + "|                               |" + "\n" +
+                        "\t\t" + "|____ 1) View Balance __________|" + "\n" +
+                        "\t\t" + "|                               |" + "\n" +
+                        "\t\t" + "|____ 2) Withdraw Cash _________|" + "\n" +
+                        "\t\t" + "|                               |" + "\n" +
+                        "\t\t" + "|____ 3) Deposit Money _________|" + "\n" +
+                        "\t\t" + "|                               |" + "\n" +
+                        "\t\t" + "|____ 4) Transfer to Account ___|" + "\n" +
+                        "\t\t" + "|                               |" + "\n" +
+                        "\t\t" + "|____ 5)Mini Statement _________|" + "\n" + 
+                        "\t\t" + "|                               |" + "\n"+
+                        "\t\t" + "|____ 6)Change Pin______________|" + "\n" +
+                        "\t\t" + "|                               |" + "\n" +
+                        "\t\t" + "|____ 7) Logout ________________|" + "\n" +
+                        "\t\t" + "|                               |" + "\n" +
+                        "\t\t" + "|_______________________________|" + "\n");
+        System.out.print("\n\t\tYour Choice: ");
+        Scanner scan = new Scanner(System.in);
+        int choice = scan.nextInt();
+        switch (choice) {
+            case 1:
+            try{ 
+            File f = new File("./ACCOUNTS/" + User.acc + "/balance.csv");
+            System.out.println("Your current balance is: " + User.getBalance(f));
+            }
+             catch (IOException e) {
+                e.printStackTrace();
+                
+            }
+                break;
+            case 2:
+            try{ 
+              User.withdraw();
+            }
+            catch(IOException e){
+                e.printStackTrace();
+            }
+                break;
+            case 3:
+                try {
+                    User.deposit();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 4:
+                 try{
+                    User.Transfer();
+                 }
+                 catch(IOException e){
+                    e.printStackTrace();
+                 }
+                 break;
+            case 5:
+                  try{
+                    User.printTransaction();
+                  }
+                  catch(IOException e){
+                    e.printStackTrace();
+                  }
+                  break;
+            case 6:
+            System.out.println("Enter your previous password: ");
+            String oldpass = scan.nextLine();
+            System.out.println("Enter new password: ");
+            String newpass = scan.nextLine();
+            boolean isPinChanged = User.changePin(User.acc, oldpass, newpass);
+            if (isPinChanged) {
+                System.out.println("PIN changed successfully.");
+            } else {
+                System.out.println("Failed to change PIN.");
+            }
+            break;
+
+            case 7:
+                System.out.print("\n\t\tLogged Out!!\n");
+                try {
+                    System.out.print("\n\nPress any key to continue...");
+                    System.in.read();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                displayWelcomeScreen();
+                break;
+            default:
+                System.out.print("\n\t\tInvalid Choice!\n");
+                try {
+                    System.out.print("\n\nPress any key to continue...");
+                    System.in.read();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                displayMainMenu();
+        }
+        scan.close();
+    }
+    public  static void clearConsol()
+    {
+        System.out.print("\033[H\033[2J"); 
+        System.out.flush();
+    }
+    public static void main(String[] args) throws IOException {
+
+        displayWelcomeScreen();
+    }
+    
+
 }
+
 
