@@ -22,7 +22,7 @@ public class User {
             }
             scanner.close();
         } else {
-            System.out.println("Wrong account number.");
+            System.out.print("Wrong account number");
             return false;
         }
 
@@ -47,10 +47,10 @@ public class User {
             System.out.println("Insufficient funds.");
         }
     }
-    public static void credit() throws IOException {
+    public static void deposit() throws IOException {
         File f = new File("./ACCOUNTS/" + acc + "/Balance.csv");
         double bal = getBalance(f);
-        System.out.println("Enter the amount to credit: ");
+        System.out.println("Enter the amount to Deposit: ");
         Scanner sc = new Scanner(System.in);
         double amount = sc.nextDouble();
         sc.close();
@@ -71,7 +71,7 @@ public class User {
         bw.close();
     }
 
-    public static void sendMoney() throws IOException {
+    public static void Transfer() throws IOException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter recipient account number: ");
         String recipientAcc = sc.nextLine();
